@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const reqUrl = "https://api.github.com/users/hiteshchoudhary";
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", reqUrl);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          const myData = JSON.parse(this.responseText);
+          const img = document.createElement("img");
+          img.src = `${myData.avatar_url}`;
+          const followers = document.createElement("p");
+          followers.innerText = myData.followers;
+          document.body.appendChild(img);
+          document.body.appendChild(followers);
+        }
+      };
+      xhr.send();
+    </script>
+  </body>
+</html>
